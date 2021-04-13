@@ -82,7 +82,7 @@ extension SimpleHUD {
     
     private func contentView(width:CGFloat = 80, height:CGFloat = 80) -> UIVisualEffectView {
         let view:UIVisualEffectView = .init(frame: CGRect(origin: .zero, size: CGSize(width: width, height: height)))
-        view.effect = UIBlurEffect(style: .regular)
+        view.effect = UIBlurEffect(style: .prominent)
         view.layer.cornerRadius = 16
         view.layer.masksToBounds = true
         return view
