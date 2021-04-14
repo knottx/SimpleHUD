@@ -9,7 +9,7 @@
 import UIKit
 
 public enum SimpleHUDType {
-    case `default`
+    case activityIndicator
     case circleStroke
     case circleRotateChase
     case circleSpinFade
@@ -32,17 +32,30 @@ public class SimpleHUD: UIView {
         }
     }
     
+    private var hudStacked:Int = 0
+    
     convenience init() {
         self.init(frame: UIScreen.main.bounds)
         self.backgroundColor = UIColor.black.withAlphaComponent(0.2)
     }
     
-    public func show(at view: UIView, type: SimpleHUDType = .default, color: UIColor = .gray) {
-        self.dismiss()
-        
+    public func show(at view: UIView, type: SimpleHUDType = .activityIndicator, color: UIColor = .gray) {
         switch type {
-        case .default:
-            self.showDefaultLoading(at: view, color: color)
+        case .progress, .icon:
+            self.hudStacked = 0
+            self.dismiss()
+            
+        default:
+            guard self.hudStacked == 0 else {
+                self.hudStacked += 1
+                return
+            }
+        }
+        
+        self.hudStacked += 1
+        switch type {
+        case .activityIndicator:
+            self.showActivityIndicatorLoading(at: view, color: color)
         case .circleStroke:
             self.showCircleStrokeLoading(at: view, color: color)
         case .circleRotateChase:
@@ -61,6 +74,9 @@ public class SimpleHUD: UIView {
     }
     
     public func dismiss() {
+        self.hudStacked -= 1
+        self.hudStacked = self.hudStacked > 0 ? self.hudStacked : 0
+        guard self.hudStacked == 0 else { return }
         self.contentView?.removeFromSuperview()
         self.contentView = nil
         self.animation?.layer.sublayers?.forEach({ (layer) in
@@ -88,7 +104,7 @@ extension SimpleHUD {
         return view
     }
     
-    private func showDefaultLoading(at view:UIView, color:UIColor) {
+    private func showActivityIndicatorLoading(at view:UIView, color:UIColor) {
         self.contentView = self.contentView()
         self.contentView?.center = view.center
         
@@ -427,7 +443,7 @@ extension SimpleHUD {
         
         let animation = CABasicAnimation(keyPath: "strokeEnd")
         animation.duration = 0.2
-        animation.fromValue = self.progressValue
+        animation.fromValue = self.progressValue > value ? 0 : self.progressValue
         animation.toValue = value
         animation.fillMode = .both
         animation.isRemovedOnCompletion = false
