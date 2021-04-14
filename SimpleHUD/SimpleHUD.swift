@@ -42,8 +42,7 @@ public class SimpleHUD: UIView {
     public func show(at view: UIView, type: SimpleHUDType = .activityIndicator, color: UIColor = .gray) {
         switch type {
         case .progress, .icon:
-            self.hudStacked = 0
-            self.dismiss()
+            self.dismissAll()
             
         default:
             guard self.hudStacked == 0 else {
@@ -71,6 +70,11 @@ public class SimpleHUD: UIView {
         case .icon(let image):
             self.showIcon(at: view, image: image, color: color)
         }
+    }
+    
+    public func dismissAll() {
+        self.hudStacked = 0
+        self.dismiss()
     }
     
     public func dismiss() {

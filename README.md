@@ -27,6 +27,9 @@ self.loading.show(at: self.view)
 Dismiss HUD
 ```swift
 self.loading.dismiss()
+
+self.loading.dissmissAll()
+// Dissmiss all stacked HUD
 ```
 
 ### Change Simple HUD Type and Color 
