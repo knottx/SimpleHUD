@@ -1,6 +1,6 @@
 # SimpleHUD
 SimpleHUD
-![alt text](https://github.com/knottx/SimpleHUD/blob/main/readmeResource/activityIndicator.png?raw=true)
+<img src="https://github.com/knottx/SimpleHUD/blob/main/readmeResource/activityIndicator.png" width="200">
 
 ## 📲 Installation
 
