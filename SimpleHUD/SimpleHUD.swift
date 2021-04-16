@@ -39,7 +39,7 @@ public class SimpleHUD: UIView {
         self.backgroundColor = UIColor.black.withAlphaComponent(0.2)
     }
     
-    public func show(at view: UIView, type: SimpleHUDType = .activityIndicator, color: UIColor = .gray) {
+    public func show(at view: UIView, type: SimpleHUDType = .activityIndicator, color: UIColor = .gray, withBackground:Bool = true) {
         switch type {
         case .progress, .icon:
             self.dismissAll()
@@ -50,8 +50,13 @@ public class SimpleHUD: UIView {
                 return
             }
         }
-        
         self.hudStacked += 1
+        if withBackground {
+            self.contentView = self.contentView()
+            self.contentView?.center = view.center
+            self.addSubview(self.contentView!)
+        }
+        
         switch type {
         case .activityIndicator:
             self.showActivityIndicatorLoading(at: view, color: color)
@@ -109,9 +114,6 @@ extension SimpleHUD {
     }
     
     private func showActivityIndicatorLoading(at view:UIView, color:UIColor) {
-        self.contentView = self.contentView()
-        self.contentView?.center = view.center
-        
         let animation = UIActivityIndicatorView(frame: CGRect(origin: .zero, size: CGSize(width: 50, height: 50)))
         if #available(iOS 13.0, *) {
             animation.center = CGPoint(x: view.center.x + 1.5, y: view.center.y + 1.5)
@@ -126,16 +128,11 @@ extension SimpleHUD {
         animation.startAnimating()
         self.animation = animation
         
-        self.addSubview(self.contentView!)
         self.addSubview(self.animation!)
-        self.sendSubviewToBack(self.contentView!)
         view.addSubview(self)
     }
     
     private func showCircleStrokeLoading(at view:UIView, color:UIColor) {
-        self.contentView = self.contentView()
-        self.contentView?.center = view.center
-        
         let width = CGFloat(40)
         let height = CGFloat(40)
         
@@ -182,16 +179,11 @@ extension SimpleHUD {
         self.animation?.center = view.center
         self.animation?.layer.addSublayer(layer)
         
-        self.addSubview(self.contentView!)
         self.addSubview(self.animation!)
-        self.sendSubviewToBack(self.contentView!)
         view.addSubview(self)
     }
     
     private func showCircleRotateChaseLoading(at view:UIView, color:UIColor) {
-        self.contentView = self.contentView()
-        self.contentView?.center = view.center
-        
         let width = CGFloat(40)
         let height = CGFloat(40)
         
@@ -242,16 +234,11 @@ extension SimpleHUD {
             self.animation?.layer.addSublayer(layer)
         }
         
-        self.addSubview(self.contentView!)
         self.addSubview(self.animation!)
-        self.sendSubviewToBack(self.contentView!)
         view.addSubview(self)
     }
     
     private func showCircleSpinFadeLoading(at view:UIView, color:UIColor) {
-        self.contentView = self.contentView()
-        self.contentView?.center = view.center
-        
         let width = CGFloat(40)
         
         let spacing: CGFloat = 3
@@ -300,16 +287,11 @@ extension SimpleHUD {
             self.animation?.layer.addSublayer(layer)
         }
         
-        self.addSubview(self.contentView!)
         self.addSubview(self.animation!)
-        self.sendSubviewToBack(self.contentView!)
         view.addSubview(self)
     }
     
     private func showThreeDotsLoading(at view:UIView, color:UIColor) {
-        self.contentView = self.contentView()
-        self.contentView?.center = view.center
-        
         let width = CGFloat(40)
         let height = CGFloat(40)
 
@@ -347,19 +329,13 @@ extension SimpleHUD {
             self.animation?.layer.addSublayer(layer)
         }
         
-        self.addSubview(self.contentView!)
         self.addSubview(self.animation!)
-        self.sendSubviewToBack(self.contentView!)
         view.addSubview(self)
     }
     
     private func showFiveBarsLoading(at view:UIView, color:UIColor) {
-        self.contentView = self.contentView()
-        self.contentView?.center = view.center
-        
         let width = CGFloat(40)
         let height = CGFloat(32)
-
 
         let lineWidth = width / 9
 
@@ -393,17 +369,12 @@ extension SimpleHUD {
             self.animation?.layer.addSublayer(layer)
         }
         
-        self.addSubview(self.contentView!)
         self.addSubview(self.animation!)
-        self.sendSubviewToBack(self.contentView!)
         view.addSubview(self)
     }
     
     
     func showProgreessLoading(at view:UIView, color:UIColor, value: CGFloat) {
-        self.contentView = self.contentView()
-        self.contentView?.center = view.center
-        
         let width = CGFloat(50)
         let height = CGFloat(50)
         
@@ -439,10 +410,8 @@ extension SimpleHUD {
         self.progressLabel?.textAlignment = .center
         self.progressLabel?.font = .systemFont(ofSize: 12)
         
-        self.addSubview(self.contentView!)
         self.addSubview(self.animation!)
         self.addSubview(self.progressLabel!)
-        self.sendSubviewToBack(self.contentView!)
         view.addSubview(self)
         
         let animation = CABasicAnimation(keyPath: "strokeEnd")
@@ -456,18 +425,13 @@ extension SimpleHUD {
     }
     
     func showIcon(at view:UIView, image:UIImage?, color:UIColor) {
-        self.contentView = self.contentView()
-        self.contentView?.center = view.center
-        
         self.iconImageView = .init(frame: CGRect(origin: .zero, size: CGSize(width: 40, height: 40)))
         self.iconImageView?.image = image
         self.iconImageView?.tintColor = color
         self.iconImageView?.contentMode = .scaleAspectFit
         self.iconImageView?.center = view.center
         
-        self.addSubview(self.contentView!)
         self.addSubview(self.iconImageView!)
-        self.sendSubviewToBack(self.contentView!)
         view.addSubview(self)
     }
 }
