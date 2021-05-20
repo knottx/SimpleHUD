@@ -1,15 +1,14 @@
 # SimpleHUD
 SimpleHUD
 <br>
-<p align="center">
-  <img width="200" src="https://github.com/knottx/SimpleHUD/blob/main/https://github.com/knottx/SimpleHUD/blob/main/ReadmeResource/activityIndicator.png">
-</p>
-| Italic             |  Block letters |
-:-------------------------:|:-------------------------:
-![](https://github.com/knottx/SimpleHUD/blob/main/ReadmeResource/activityIndicator.gif)  |  ![](https://github.com/knottx/SimpleHUD/blob/main/ReadmeResource/activityIndicator.gif)
-![](https://github.com/knottx/SimpleHUD/blob/main/ReadmeResource/activityIndicator.gif)  |  ![](https://github.com/knottx/SimpleHUD/blob/main/ReadmeResource/activityIndicator.gif)
-![](https://github.com/knottx/SimpleHUD/blob/main/ReadmeResource/activityIndicator.gif)  |  ![](https://github.com/knottx/SimpleHUD/blob/main/ReadmeResource/activityIndicator.gif)
-![](https://github.com/knottx/SimpleHUD/blob/main/ReadmeResource/activityIndicator.gif)  |  ![](https://github.com/knottx/SimpleHUD/blob/main/ReadmeResource/activityIndicator.gif)
+<img src="https://github.com/knottx/SimpleHUD/blob/main/ReadmeResource/activityIndicator.gif" width="150"> 
+<img src="https://github.com/knottx/SimpleHUD/blob/main/ReadmeResource/circleStroke.gif" width="150"> 
+<img src="https://github.com/knottx/SimpleHUD/blob/main/ReadmeResource/circleRotateChase.gif" width="150"> 
+<img src="https://github.com/knottx/SimpleHUD/blob/main/ReadmeResource/circleSpinFade.gif" width="150"> 
+<img src="https://github.com/knottx/SimpleHUD/blob/main/ReadmeResource/threeDots.gif" width="150"> 
+<img src="https://github.com/knottx/SimpleHUD/blob/main/ReadmeResource/fiveBars.gif" width="150"> 
+<img src="https://github.com/knottx/SimpleHUD/blob/main/ReadmeResource/progress.gif" width="150"> 
+<img src="https://github.com/knottx/SimpleHUD/blob/main/ReadmeResource/icon.gif" width="150"> 
 
 <br>
 
