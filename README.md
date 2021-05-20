@@ -2,17 +2,14 @@
 SimpleHUD
 <br>
 <p align="center">
-  <img width="200" src="https://github.com/knottx/SimpleHUD/blob/main/ReadmeResource/activityIndicator.png">
+  <img width="200" src="https://github.com/knottx/SimpleHUD/blob/main/https://github.com/knottx/SimpleHUD/blob/main/ReadmeResource/activityIndicator.png">
 </p>
 | Italic             |  Block letters |
 :-------------------------:|:-------------------------:
-![](ReadmeResource/activityIndicator.gif)  |  ![](ReadmeResource/activityIndicator.gif)
-
-![](ReadmeResource/activityIndicator.gif)  |  ![](ReadmeResource/activityIndicator.gif)
-
-![](ReadmeResource/activityIndicator.gif)  |  ![](ReadmeResource/activityIndicator.gif)
-
-![](ReadmeResource/activityIndicator.gif)  |  ![](ReadmeResource/activityIndicator.gif)
+![](https://github.com/knottx/SimpleHUD/blob/main/ReadmeResource/activityIndicator.gif)  |  ![](https://github.com/knottx/SimpleHUD/blob/main/ReadmeResource/activityIndicator.gif)
+![](https://github.com/knottx/SimpleHUD/blob/main/ReadmeResource/activityIndicator.gif)  |  ![](https://github.com/knottx/SimpleHUD/blob/main/ReadmeResource/activityIndicator.gif)
+![](https://github.com/knottx/SimpleHUD/blob/main/ReadmeResource/activityIndicator.gif)  |  ![](https://github.com/knottx/SimpleHUD/blob/main/ReadmeResource/activityIndicator.gif)
+![](https://github.com/knottx/SimpleHUD/blob/main/ReadmeResource/activityIndicator.gif)  |  ![](https://github.com/knottx/SimpleHUD/blob/main/ReadmeResource/activityIndicator.gif)
 
 <br>
 
