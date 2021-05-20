@@ -49,7 +49,17 @@ self.loading.dissmissAll()
 ```swift
 self.loading.show(at: self.view, type: <SimpleHUDType>, color: <UIColor>)
 ```
-
+SimpleHUDType
+```swift
+.activityIndicator
+.circleStroke
+.circleRotateChase
+.circleSpinFade
+.threeDots
+.fiveBars
+.progress(value: CGFloat)
+.icon(_ image: UIImage?)
+```
 
 ## 📋 Requirements
 
