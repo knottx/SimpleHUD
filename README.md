@@ -2,8 +2,19 @@
 SimpleHUD
 <br>
 <p align="center">
-  <img width="200" src="https://github.com/knottx/SimpleHUD/blob/main/readmeResource/activityIndicator.png">
+  <img width="200" src="https://github.com/knottx/SimpleHUD/blob/main/ReadmeResource/activityIndicator.png">
 </p>
+| Italic             |  Block letters |
+:-------------------------:|:-------------------------:
+![](ReadmeResource/activityIndicator.gif)  |  ![](ReadmeResource/activityIndicator.gif)
+
+![](ReadmeResource/activityIndicator.gif)  |  ![](ReadmeResource/activityIndicator.gif)
+
+![](ReadmeResource/activityIndicator.gif)  |  ![](ReadmeResource/activityIndicator.gif)
+
+![](ReadmeResource/activityIndicator.gif)  |  ![](ReadmeResource/activityIndicator.gif)
+
+<br>
 
 ## 📲 Installation
 
