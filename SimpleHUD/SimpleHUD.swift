@@ -83,22 +83,25 @@ public class SimpleHUD: UIView {
     }
     
     public func dismiss() {
-        self.hudStacked -= 1
-        self.hudStacked = self.hudStacked > 0 ? self.hudStacked : 0
-        guard self.hudStacked == 0 else { return }
-        self.contentView?.removeFromSuperview()
-        self.contentView = nil
-        self.animation?.layer.sublayers?.forEach({ (layer) in
-            layer.removeAllAnimations()
-            layer.removeFromSuperlayer()
-        })
-        self.animation?.removeFromSuperview()
-        self.animation = nil
-        self.progressLabel?.removeFromSuperview()
-        self.progressLabel = nil
-        self.iconImageView?.removeFromSuperview()
-        self.iconImageView = nil
-        self.removeFromSuperview()
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            self.hudStacked -= 1
+            self.hudStacked = self.hudStacked > 0 ? self.hudStacked : 0
+            guard self.hudStacked == 0 else { return }
+            self.contentView?.removeFromSuperview()
+            self.contentView = nil
+            self.animation?.layer.sublayers?.forEach({ (layer) in
+                layer.removeAllAnimations()
+                layer.removeFromSuperlayer()
+            })
+            self.animation?.removeFromSuperview()
+            self.animation = nil
+            self.progressLabel?.removeFromSuperview()
+            self.progressLabel = nil
+            self.iconImageView?.removeFromSuperview()
+            self.iconImageView = nil
+            self.removeFromSuperview()
+        }
     }
     
 }
