@@ -88,18 +88,26 @@ public class SimpleHUD: UIView {
             self.hudStacked -= 1
             self.hudStacked = self.hudStacked > 0 ? self.hudStacked : 0
             guard self.hudStacked == 0 else { return }
-            self.contentView?.removeFromSuperview()
-            self.contentView = nil
-            self.animation?.layer.sublayers?.forEach({ (layer) in
+            if self.contentView != nil {
+                self.contentView?.removeFromSuperview()
+                self.contentView = nil
+            }
+            self.animation?.layer.sublayers?.forEach { (layer) in
                 layer.removeAllAnimations()
                 layer.removeFromSuperlayer()
-            })
-            self.animation?.removeFromSuperview()
-            self.animation = nil
-            self.progressLabel?.removeFromSuperview()
-            self.progressLabel = nil
-            self.iconImageView?.removeFromSuperview()
-            self.iconImageView = nil
+            }
+            if self.animation != nil {
+                self.animation?.removeFromSuperview()
+                self.animation = nil
+            }
+            if self.progressLabel != nil {
+                self.progressLabel?.removeFromSuperview()
+                self.progressLabel = nil
+            }
+            if self.iconImageView != nil {
+                self.iconImageView?.removeFromSuperview()
+                self.iconImageView = nil
+            }
             self.removeFromSuperview()
         }
     }
