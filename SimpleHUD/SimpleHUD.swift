@@ -39,7 +39,7 @@ public class SimpleHUD: UIView {
         self.backgroundColor = UIColor.black.withAlphaComponent(0.2)
     }
     
-    public func show(at view: UIView, type: SimpleHUDType = .activityIndicator, color: UIColor = .gray, withBackground:Bool = true) {
+    public func show(at view: UIView, type: SimpleHUDType = .activityIndicator, tintColor: UIColor = .gray, withBezels:Bool = true) {
         switch type {
         case .progress, .icon:
             self.dismissAll()
@@ -51,7 +51,7 @@ public class SimpleHUD: UIView {
             }
         }
         self.hudStacked += 1
-        if withBackground {
+        if withBezels {
             self.contentView = self.contentView()
             self.contentView?.center = view.center
             self.addSubview(self.contentView!)
@@ -59,21 +59,21 @@ public class SimpleHUD: UIView {
         
         switch type {
         case .activityIndicator:
-            self.showActivityIndicatorLoading(at: view, color: color)
+            self.showActivityIndicatorLoading(at: view, tintColor: tintColor)
         case .circleStroke:
-            self.showCircleStrokeLoading(at: view, color: color)
+            self.showCircleStrokeLoading(at: view, tintColor: tintColor)
         case .circleRotateChase:
-            self.showCircleRotateChaseLoading(at: view, color: color)
+            self.showCircleRotateChaseLoading(at: view, tintColor: tintColor)
         case .circleSpinFade:
-            self.showCircleSpinFadeLoading(at: view, color: color)
+            self.showCircleSpinFadeLoading(at: view, tintColor: tintColor)
         case .threeDots:
-            self.showThreeDotsLoading(at: view, color: color)
+            self.showThreeDotsLoading(at: view, tintColor: tintColor)
         case .fiveBars:
-            self.showFiveBarsLoading(at: view, color: color)
+            self.showFiveBarsLoading(at: view, tintColor: tintColor)
         case .progress(let value):
-            self.showProgreessLoading(at: view, color: color, value: value)
+            self.showProgreessLoading(at: view, tintColor: tintColor, value: value)
         case .icon(let image):
-            self.showIcon(at: view, image: image, color: color)
+            self.showIcon(at: view, image: image, tintColor: tintColor)
         }
     }
     
@@ -124,7 +124,7 @@ extension SimpleHUD {
         return view
     }
     
-    private func showActivityIndicatorLoading(at view:UIView, color:UIColor) {
+    private func showActivityIndicatorLoading(at view:UIView, tintColor:UIColor) {
         let animation = UIActivityIndicatorView(frame: CGRect(origin: .zero, size: CGSize(width: 50, height: 50)))
         if #available(iOS 13.0, *) {
             animation.center = CGPoint(x: view.center.x + 1.5, y: view.center.y + 1.5)
@@ -134,7 +134,7 @@ extension SimpleHUD {
             animation.style = .gray
             animation.transform = CGAffineTransform(scaleX: 1.8, y: 1.8)
         }
-        animation.color = color
+        animation.color = tintColor
         animation.hidesWhenStopped = true
         animation.startAnimating()
         self.animation = animation
@@ -143,7 +143,7 @@ extension SimpleHUD {
         view.addSubview(self)
     }
     
-    private func showCircleStrokeLoading(at view:UIView, color:UIColor) {
+    private func showCircleStrokeLoading(at view:UIView, tintColor:UIColor) {
         let width = CGFloat(40)
         let height = CGFloat(40)
         
@@ -182,7 +182,7 @@ extension SimpleHUD {
         layer.frame = CGRect(x: 0, y: 0, width: width, height: height)
         layer.path = path.cgPath
         layer.fillColor = nil
-        layer.strokeColor = color.cgColor
+        layer.strokeColor = tintColor.cgColor
         layer.lineWidth = 3
         layer.add(animation, forKey: "animation")
         
@@ -194,7 +194,7 @@ extension SimpleHUD {
         view.addSubview(self)
     }
     
-    private func showCircleRotateChaseLoading(at view:UIView, color:UIColor) {
+    private func showCircleRotateChaseLoading(at view:UIView, tintColor:UIColor) {
         let width = CGFloat(40)
         let height = CGFloat(40)
         
@@ -240,7 +240,7 @@ extension SimpleHUD {
             let layer = CAShapeLayer()
             layer.frame = CGRect(x: 0, y: 0, width: radius, height: radius)
             layer.path = path.cgPath
-            layer.fillColor = color.cgColor
+            layer.fillColor = tintColor.cgColor
             layer.add(animation, forKey: "animation")
             self.animation?.layer.addSublayer(layer)
         }
@@ -249,7 +249,7 @@ extension SimpleHUD {
         view.addSubview(self)
     }
     
-    private func showCircleSpinFadeLoading(at view:UIView, color:UIColor) {
+    private func showCircleSpinFadeLoading(at view:UIView, tintColor:UIColor) {
         let width = CGFloat(40)
         
         let spacing: CGFloat = 3
@@ -288,7 +288,7 @@ extension SimpleHUD {
             
             let layer = CAShapeLayer()
             layer.path = path.cgPath
-            layer.fillColor = color.cgColor
+            layer.fillColor = tintColor.cgColor
             layer.backgroundColor = nil
             layer.frame = CGRect(x: radiusX * (cos(angle) + 1), y: radiusX * (sin(angle) + 1), width: radius, height: radius)
             
@@ -302,7 +302,7 @@ extension SimpleHUD {
         view.addSubview(self)
     }
     
-    private func showThreeDotsLoading(at view:UIView, color:UIColor) {
+    private func showThreeDotsLoading(at view:UIView, tintColor:UIColor) {
         let width = CGFloat(40)
         let height = CGFloat(40)
 
@@ -332,7 +332,7 @@ extension SimpleHUD {
             let layer = CAShapeLayer()
             layer.frame = CGRect(x: (radius + spacing) * CGFloat(i), y: ypos, width: radius, height: radius)
             layer.path = path.cgPath
-            layer.fillColor = color.cgColor
+            layer.fillColor = tintColor.cgColor
 
             animation.beginTime = beginTime - beginTimes[i]
 
@@ -344,9 +344,9 @@ extension SimpleHUD {
         view.addSubview(self)
     }
     
-    private func showFiveBarsLoading(at view:UIView, color:UIColor) {
+    private func showFiveBarsLoading(at view:UIView, tintColor:UIColor) {
         let width = CGFloat(40)
-        let height = CGFloat(32)
+        let height = CGFloat(24)
 
         let lineWidth = width / 9
 
@@ -372,7 +372,7 @@ extension SimpleHUD {
             layer.frame = CGRect(x: lineWidth * 2 * CGFloat(i), y: 0, width: lineWidth, height: height)
             layer.path = path.cgPath
             layer.backgroundColor = nil
-            layer.fillColor = color.cgColor
+            layer.fillColor = tintColor.cgColor
 
             animation.beginTime = beginTime - beginTimes[i]
 
@@ -385,7 +385,7 @@ extension SimpleHUD {
     }
     
     
-    func showProgreessLoading(at view:UIView, color:UIColor, value: CGFloat) {
+    func showProgreessLoading(at view:UIView, tintColor:UIColor, value: CGFloat) {
         let width = CGFloat(50)
         let height = CGFloat(50)
         
@@ -404,12 +404,12 @@ extension SimpleHUD {
         layerCircle.path = pathCircle.cgPath
         layerCircle.fillColor = UIColor.clear.cgColor
         layerCircle.lineWidth = 3
-        layerCircle.strokeColor = color.cgColor
+        layerCircle.strokeColor = tintColor.cgColor
 
         layerProgress.path = pathProgress.cgPath
         layerProgress.fillColor = UIColor.clear.cgColor
         layerProgress.lineWidth = 5
-        layerProgress.strokeColor = color.cgColor
+        layerProgress.strokeColor = tintColor.cgColor
         layerProgress.strokeEnd = 0
         
         self.animation?.layer.addSublayer(layerCircle)
@@ -417,7 +417,7 @@ extension SimpleHUD {
 
         self.progressLabel = .init(frame: CGRect(origin: .zero, size: CGSize(width: width, height: height)))
         self.progressLabel?.center = view.center
-        self.progressLabel?.textColor = color
+        self.progressLabel?.textColor = tintColor
         self.progressLabel?.textAlignment = .center
         self.progressLabel?.font = .systemFont(ofSize: 12)
         
@@ -435,10 +435,10 @@ extension SimpleHUD {
         self.progressValue = value
     }
     
-    func showIcon(at view:UIView, image:UIImage?, color:UIColor) {
+    func showIcon(at view:UIView, image:UIImage?, tintColor:UIColor) {
         self.iconImageView = .init(frame: CGRect(origin: .zero, size: CGSize(width: 40, height: 40)))
         self.iconImageView?.image = image
-        self.iconImageView?.tintColor = color
+        self.iconImageView?.tintColor = tintColor
         self.iconImageView?.contentMode = .scaleAspectFit
         self.iconImageView?.center = view.center
         

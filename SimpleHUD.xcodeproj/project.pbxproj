@@ -10,6 +10,7 @@
 		8B328D512625D58A004F0B98 /* SimpleHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B328D472625D58A004F0B98 /* SimpleHUD.framework */; };
 		8B328D562625D58A004F0B98 /* SimpleHUDTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B328D552625D58A004F0B98 /* SimpleHUDTests.swift */; };
 		8B328D682625D62A004F0B98 /* SimpleHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B328D672625D62A004F0B98 /* SimpleHUD.swift */; };
+		8B3AF9B726A8913D009D203D /* SimpleToast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3AF9B626A8913D009D203D /* SimpleToast.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +30,7 @@
 		8B328D552625D58A004F0B98 /* SimpleHUDTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleHUDTests.swift; sourceTree = "<group>"; };
 		8B328D572625D58A004F0B98 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8B328D672625D62A004F0B98 /* SimpleHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleHUD.swift; sourceTree = "<group>"; };
+		8B3AF9B626A8913D009D203D /* SimpleToast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleToast.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +75,7 @@
 			children = (
 				8B328D4B2625D58A004F0B98 /* Info.plist */,
 				8B328D672625D62A004F0B98 /* SimpleHUD.swift */,
+				8B3AF9B626A8913D009D203D /* SimpleToast.swift */,
 			);
 			path = SimpleHUD;
 			sourceTree = "<group>";
@@ -196,6 +199,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8B328D682625D62A004F0B98 /* SimpleHUD.swift in Sources */,
+				8B3AF9B726A8913D009D203D /* SimpleToast.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

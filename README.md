@@ -27,27 +27,27 @@ import SimpleHUD
 ```
 
 ```swift
-var loading:SimpleHUD = SimpleHUD()
+var simpleHUD: SimpleHUD = SimpleHUD()
 ```
 
 Show HUD
 ```swift
-self.loading.show(at: self.view)
+self.simpleHUD.show(at: self.view)
 ```
 
 Dismiss HUD
 ```swift
-self.loading.dismiss()
+self.simpleHUD.dismiss()
 ```
 
 Dissmiss all stacked HUD
 ```swift
-self.loading.dissmissAll()
+self.simpleHUD.dissmissAll()
 ```
 
 ### Change Simple HUD Type and Color 
 ```swift
-self.loading.show(at: self.view, type: <SimpleHUDType>, color: <UIColor>)
+self.simpleHUD.show(at: self.view, type: <SimpleHUDType>, color: <UIColor>)
 ```
 SimpleHUDType
 ```swift
@@ -59,6 +59,20 @@ SimpleHUDType
 .fiveBars
 .progress(value: CGFloat)
 .icon(_ image: UIImage?)
+```
+### Simple Toast 
+```swift
+var simpleToast: SimpleToast = SimpleToast()
+```
+
+Show Toast
+```swift
+self.simpleToast.toast(at: self.view, message: <String?>, image: <UIImage?>)
+```
+
+Dismiss Toast
+```swift
+self.simpleToast.dismiss()
 ```
 
 ## 📋 Requirements
