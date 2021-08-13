@@ -92,10 +92,6 @@ public class SimpleHUD: UIView {
                 self.contentView?.removeFromSuperview()
                 self.contentView = nil
             }
-            self.animation?.layer.sublayers?.forEach { (layer) in
-                layer.removeAllAnimations()
-                layer.removeFromSuperlayer()
-            }
             if self.animation != nil {
                 self.animation?.removeFromSuperview()
                 self.animation = nil
