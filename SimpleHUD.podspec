@@ -1,7 +1,7 @@
 Pod::Spec.new do |spec|
 
   spec.name         = "SimpleHUD"
-  spec.version      = "1.6.1"
+  spec.version      = "1.7.0"
   spec.summary      = "Simple HUD"
 
   spec.homepage     = "https://github.com/knottx/SimpleHUD"
@@ -11,7 +11,7 @@ Pod::Spec.new do |spec|
   
   spec.swift_version   = "5.1"
   spec.ios.deployment_target = "10.0"
-  spec.source_files  = "SimpleHUD/**/*.swift"
+  spec.source_files  = "Sources/SimpleHUD/**/*.swift"
   spec.requires_arc  = true
 
 end
