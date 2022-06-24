@@ -6,6 +6,8 @@
 //  Copyright © 2021 knottx. All rights reserved.
 //
 
+#if canImport(UIKit)
+
 import UIKit
 
 public enum SimpleHUDType {
@@ -442,3 +444,5 @@ extension SimpleHUD {
         view.addSubview(self)
     }
 }
+
+#endif

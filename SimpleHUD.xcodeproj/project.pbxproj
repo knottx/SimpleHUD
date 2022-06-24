@@ -55,8 +55,8 @@
 		8B328D3D2625D58A004F0B98 = {
 			isa = PBXGroup;
 			children = (
-				8B328D492625D58A004F0B98 /* SimpleHUD */,
-				8B328D542625D58A004F0B98 /* SimpleHUDTests */,
+				8B977FC7286571AF00569A32 /* Sources */,
+				8B977FC8286571C300569A32 /* Tests */,
 				8B328D482625D58A004F0B98 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -87,6 +87,22 @@
 				8B328D572625D58A004F0B98 /* Info.plist */,
 			);
 			path = SimpleHUDTests;
+			sourceTree = "<group>";
+		};
+		8B977FC7286571AF00569A32 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				8B328D492625D58A004F0B98 /* SimpleHUD */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		8B977FC8286571C300569A32 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				8B328D542625D58A004F0B98 /* SimpleHUDTests */,
+			);
+			path = Tests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

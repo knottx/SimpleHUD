@@ -6,6 +6,8 @@
 //  Copyright © 2021 knottx. All rights reserved.
 //
 
+#if canImport(UIKit)
+
 import UIKit
 
 public class SimpleToast: UIView {
@@ -99,3 +101,5 @@ public class SimpleToast: UIView {
         return view
     }
 }
+
+#endif
