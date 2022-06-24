@@ -13,12 +13,17 @@ SimpleHUD
 <br>
 
 ## 📲 Installation
-
+### CocoaPods
 `SimpleHUD` is available on [CocoaPods](https://cocoapods.org/pods/SimpleHUD):
 
 ```ruby
 pod 'SimpleHUD'
 ```
+
+### Swift Package Manager
+- File > Swift Packages > Add Package Dependency
+- Add `https://github.com/knottx/SimpleHUD.git`
+- Select "Up to Next Major" with "1.7.0"
 
 ## 📝 How
 ### Code Implementation
