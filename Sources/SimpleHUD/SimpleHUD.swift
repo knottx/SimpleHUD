@@ -40,7 +40,12 @@ public class SimpleHUD: UIView {
         self.backgroundColor = UIColor.black.withAlphaComponent(0.2)
     }
 
-    public func show(at view: UIView, type: SimpleHUDType = .activityIndicator, tintColor: UIColor = .gray, withBezels: Bool = true) {
+    public func show(at view: UIView,
+                     type: SimpleHUDType = .activityIndicator,
+                     tintColor: UIColor = .gray,
+                     withBezels: Bool = true,
+                     bezelsSize: CGSize = .init(width: 80, height: 80),
+                     bezelsBlurEffect: UIBlurEffect.Style = .prominent) {
         switch type {
         case .progress, .icon:
             self.dismissAll()
@@ -53,7 +58,8 @@ public class SimpleHUD: UIView {
         }
         self.hudStacked += 1
         if withBezels {
-            self.contentView = self.contentView()
+            self.contentView = self.contentView(size: bezelsSize,
+                                                bezelsBlurEffect: bezelsBlurEffect)
             self.contentView?.center = view.center
             self.addSubview(self.contentView!)
         }
@@ -111,10 +117,13 @@ public class SimpleHUD: UIView {
 }
 
 extension SimpleHUD {
-    private func contentView(width: CGFloat = 80, height: CGFloat = 80) -> UIVisualEffectView {
-        let view: UIVisualEffectView = .init(frame: CGRect(origin: .zero, size: CGSize(width: width, height: height)))
-        view.effect = UIBlurEffect(style: .prominent)
+    private func contentView(size: CGSize, bezelsBlurEffect: UIBlurEffect.Style) -> UIVisualEffectView {
+        let view: UIVisualEffectView = .init(frame: CGRect(origin: .zero, size: size))
+        view.effect = UIBlurEffect(style: bezelsBlurEffect)
         view.layer.cornerRadius = 16
+        if #available(iOS 13.0, *) {
+            view.layer.cornerCurve = .continuous
+        }
         view.layer.masksToBounds = true
         return view
     }

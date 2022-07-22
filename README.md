@@ -23,7 +23,7 @@ pod 'SimpleHUD'
 ### Swift Package Manager
 - File > Swift Packages > Add Package Dependency
 - Add `https://github.com/knottx/SimpleHUD.git`
-- Select "Up to Next Major" with "1.7.0"
+- Select "Up to Next Major" with "1.7.2"
 
 ## 📝 How
 ### Code Implementation

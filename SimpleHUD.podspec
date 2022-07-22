@@ -1,7 +1,7 @@
 Pod::Spec.new do |spec|
 
   spec.name         = "SimpleHUD"
-  spec.version      = "1.7.1"
+  spec.version      = "1.7.2"
   spec.summary      = "Simple HUD"
 
   spec.homepage     = "https://github.com/knottx/SimpleHUD"
