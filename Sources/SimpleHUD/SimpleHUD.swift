@@ -22,30 +22,29 @@ public enum SimpleHUDType {
 }
 
 public class SimpleHUD: UIView {
-    
     private var contentView: UIVisualEffectView?
     private var animation: UIView?
     private var progressLabel: UILabel?
     private var iconImageView: UIImageView?
-    
+
     private var progressValue: CGFloat = 0 {
         didSet {
             self.progressLabel?.text = "\(Int(self.progressValue * 100))%"
         }
     }
-    
-    private var hudStacked:Int = 0
-    
+
+    private var hudStacked: Int = 0
+
     convenience init() {
         self.init(frame: UIScreen.main.bounds)
         self.backgroundColor = UIColor.black.withAlphaComponent(0.2)
     }
-    
-    public func show(at view: UIView, type: SimpleHUDType = .activityIndicator, tintColor: UIColor = .gray, withBezels:Bool = true) {
+
+    public func show(at view: UIView, type: SimpleHUDType = .activityIndicator, tintColor: UIColor = .gray, withBezels: Bool = true) {
         switch type {
         case .progress, .icon:
             self.dismissAll()
-            
+
         default:
             guard self.hudStacked == 0 else {
                 self.hudStacked += 1
@@ -58,7 +57,7 @@ public class SimpleHUD: UIView {
             self.contentView?.center = view.center
             self.addSubview(self.contentView!)
         }
-        
+
         switch type {
         case .activityIndicator:
             self.showActivityIndicatorLoading(at: view, tintColor: tintColor)
@@ -72,18 +71,18 @@ public class SimpleHUD: UIView {
             self.showThreeDotsLoading(at: view, tintColor: tintColor)
         case .fiveBars:
             self.showFiveBarsLoading(at: view, tintColor: tintColor)
-        case .progress(let value):
+        case let .progress(value):
             self.showProgreessLoading(at: view, tintColor: tintColor, value: value)
-        case .icon(let image):
+        case let .icon(image):
             self.showIcon(at: view, image: image, tintColor: tintColor)
         }
     }
-    
+
     public func dismissAll() {
         self.hudStacked = 0
         self.dismiss()
     }
-    
+
     public func dismiss() {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
@@ -109,25 +108,23 @@ public class SimpleHUD: UIView {
             self.removeFromSuperview()
         }
     }
-    
 }
 
 extension SimpleHUD {
-    
-    private func contentView(width:CGFloat = 80, height:CGFloat = 80) -> UIVisualEffectView {
-        let view:UIVisualEffectView = .init(frame: CGRect(origin: .zero, size: CGSize(width: width, height: height)))
+    private func contentView(width: CGFloat = 80, height: CGFloat = 80) -> UIVisualEffectView {
+        let view: UIVisualEffectView = .init(frame: CGRect(origin: .zero, size: CGSize(width: width, height: height)))
         view.effect = UIBlurEffect(style: .prominent)
         view.layer.cornerRadius = 16
         view.layer.masksToBounds = true
         return view
     }
-    
-    private func showActivityIndicatorLoading(at view:UIView, tintColor:UIColor) {
+
+    private func showActivityIndicatorLoading(at view: UIView, tintColor: UIColor) {
         let animation = UIActivityIndicatorView(frame: CGRect(origin: .zero, size: CGSize(width: 50, height: 50)))
         if #available(iOS 13.0, *) {
             animation.center = CGPoint(x: view.center.x + 1.5, y: view.center.y + 1.5)
             animation.style = .large
-        }else{
+        } else {
             animation.center = view.center
             animation.style = .gray
             animation.transform = CGAffineTransform(scaleX: 1.8, y: 1.8)
@@ -136,46 +133,46 @@ extension SimpleHUD {
         animation.hidesWhenStopped = true
         animation.startAnimating()
         self.animation = animation
-        
+
         self.addSubview(self.animation!)
         view.addSubview(self)
     }
-    
-    private func showCircleStrokeLoading(at view:UIView, tintColor:UIColor) {
+
+    private func showCircleStrokeLoading(at view: UIView, tintColor: UIColor) {
         let width = CGFloat(40)
         let height = CGFloat(40)
-        
-        let beginTime: Double = 0.5
-        let durationStart: Double = 1.2
-        let durationStop: Double = 0.7
-        
-        let animationRotation:CABasicAnimation = .init(keyPath: "transform.rotation")
+
+        let beginTime = 0.5
+        let durationStart = 1.2
+        let durationStop = 0.7
+
+        let animationRotation: CABasicAnimation = .init(keyPath: "transform.rotation")
         animationRotation.byValue = 2 * Float.pi
         animationRotation.timingFunction = CAMediaTimingFunction(name: .linear)
-        
-        let animationStart:CABasicAnimation = .init(keyPath: "strokeStart")
+
+        let animationStart: CABasicAnimation = .init(keyPath: "strokeStart")
         animationStart.duration = durationStart
         animationStart.timingFunction = CAMediaTimingFunction(controlPoints: 0.4, 0, 0.2, 1)
         animationStart.fromValue = 0
         animationStart.toValue = 1
         animationStart.beginTime = beginTime
-        
-        let animationStop:CABasicAnimation = .init(keyPath: "strokeEnd")
+
+        let animationStop: CABasicAnimation = .init(keyPath: "strokeEnd")
         animationStop.duration = durationStop
         animationStop.timingFunction = CAMediaTimingFunction(controlPoints: 0.4, 0, 0.2, 1)
         animationStop.fromValue = 0
         animationStop.toValue = 1
-        
-        let animation:CAAnimationGroup = .init()
+
+        let animation: CAAnimationGroup = .init()
         animation.animations = [animationRotation, animationStop, animationStart]
         animation.duration = durationStart + beginTime
         animation.repeatCount = .infinity
         animation.isRemovedOnCompletion = false
         animation.fillMode = .forwards
-        
-        let path:UIBezierPath = .init(arcCenter: CGPoint(x: width / 2, y: height / 2), radius: width / 2,
-                                      startAngle: -0.5 * .pi, endAngle: 1.5 * .pi, clockwise: true)
-        
+
+        let path: UIBezierPath = .init(arcCenter: CGPoint(x: width / 2, y: height / 2), radius: width / 2,
+                                       startAngle: -0.5 * .pi, endAngle: 1.5 * .pi, clockwise: true)
+
         let layer = CAShapeLayer()
         layer.frame = CGRect(x: 0, y: 0, width: width, height: height)
         layer.path = path.cgPath
@@ -183,58 +180,58 @@ extension SimpleHUD {
         layer.strokeColor = tintColor.cgColor
         layer.lineWidth = 3
         layer.add(animation, forKey: "animation")
-        
+
         self.animation = .init(frame: CGRect(origin: .zero, size: CGSize(width: width, height: height)))
         self.animation?.center = view.center
         self.animation?.layer.addSublayer(layer)
-        
+
         self.addSubview(self.animation!)
         view.addSubview(self)
     }
-    
-    private func showCircleRotateChaseLoading(at view:UIView, tintColor:UIColor) {
+
+    private func showCircleRotateChaseLoading(at view: UIView, tintColor: UIColor) {
         let width = CGFloat(40)
         let height = CGFloat(40)
-        
+
         let spacing: CGFloat = 3
         let radius = (width - 4 * spacing) / 3.5
         let radiusX = (width - radius) / 2
-        
+
         let duration: CFTimeInterval = 1.5
-        
+
         let path = UIBezierPath(arcCenter: CGPoint(x: radius / 2, y: radius / 2),
                                 radius: radius / 2, startAngle: 0, endAngle: 2 * .pi, clockwise: false)
-        
+
         let pathPosition = UIBezierPath(arcCenter: CGPoint(x: width / 2, y: height / 2),
                                         radius: radiusX, startAngle: 1.5 * .pi, endAngle: 3.5 * .pi, clockwise: true)
-        
+
         self.animation = .init(frame: CGRect(origin: .zero, size: CGSize(width: width, height: height)))
         self.animation?.center = view.center
-        
+
         for i in 0..<5 {
             let rate = Float(i) * 1 / 5
             let fromScale = 1 - rate
             let toScale = 0.2 + rate
             let timeFunc = CAMediaTimingFunction(controlPoints: 0.5, 0.15 + rate, 0.25, 1)
-            
+
             let animationScale = CABasicAnimation(keyPath: "transform.scale")
             animationScale.duration = duration
             animationScale.repeatCount = HUGE
             animationScale.fromValue = fromScale
             animationScale.toValue = toScale
-            
+
             let animationPosition = CAKeyframeAnimation(keyPath: "position")
             animationPosition.duration = duration
             animationPosition.repeatCount = HUGE
             animationPosition.path = pathPosition.cgPath
-            
+
             let animation = CAAnimationGroup()
             animation.animations = [animationScale, animationPosition]
             animation.timingFunction = timeFunc
             animation.duration = duration
             animation.repeatCount = .infinity
             animation.isRemovedOnCompletion = false
-            
+
             let layer = CAShapeLayer()
             layer.frame = CGRect(x: 0, y: 0, width: radius, height: radius)
             layer.path = path.cgPath
@@ -242,65 +239,65 @@ extension SimpleHUD {
             layer.add(animation, forKey: "animation")
             self.animation?.layer.addSublayer(layer)
         }
-        
+
         self.addSubview(self.animation!)
         view.addSubview(self)
     }
-    
-    private func showCircleSpinFadeLoading(at view:UIView, tintColor:UIColor) {
+
+    private func showCircleSpinFadeLoading(at view: UIView, tintColor: UIColor) {
         let width = CGFloat(40)
-        
+
         let spacing: CGFloat = 3
         let radius = (width - 4 * spacing) / 3.5
         let radiusX = (width - radius) / 2
-        
+
         let duration = 1.0
         let beginTime = CACurrentMediaTime()
         let beginTimes: [CFTimeInterval] = [0.84, 0.72, 0.6, 0.48, 0.36, 0.24, 0.12, 0]
-        
+
         let animationScale = CAKeyframeAnimation(keyPath: "transform.scale")
         animationScale.keyTimes = [0, 0.5, 1]
         animationScale.values = [1, 0.4, 1]
         animationScale.duration = duration
-        
+
         let animationOpacity = CAKeyframeAnimation(keyPath: "opacity")
         animationOpacity.keyTimes = [0, 0.5, 1]
         animationOpacity.values = [1, 0.3, 1]
         animationOpacity.duration = duration
-        
+
         let animation = CAAnimationGroup()
         animation.animations = [animationScale, animationOpacity]
         animation.timingFunction = CAMediaTimingFunction(name: .linear)
         animation.duration = duration
         animation.repeatCount = .infinity
         animation.isRemovedOnCompletion = false
-        
+
         let path = UIBezierPath(arcCenter: CGPoint(x: radius / 2, y: radius / 2),
                                 radius: radius / 2, startAngle: 0, endAngle: 2 * .pi, clockwise: false)
-        
+
         self.animation = .init(frame: CGRect(origin: .zero, size: CGSize(width: width, height: width)))
         self.animation?.center = view.center
-        
+
         for i in 0..<8 {
             let angle = .pi / 4 * CGFloat(i)
-            
+
             let layer = CAShapeLayer()
             layer.path = path.cgPath
             layer.fillColor = tintColor.cgColor
             layer.backgroundColor = nil
             layer.frame = CGRect(x: radiusX * (cos(angle) + 1), y: radiusX * (sin(angle) + 1), width: radius, height: radius)
-            
+
             animation.beginTime = beginTime - beginTimes[i]
-            
+
             layer.add(animation, forKey: "animation")
             self.animation?.layer.addSublayer(layer)
         }
-        
+
         self.addSubview(self.animation!)
         view.addSubview(self)
     }
-    
-    private func showThreeDotsLoading(at view:UIView, tintColor:UIColor) {
+
+    private func showThreeDotsLoading(at view: UIView, tintColor: UIColor) {
         let width = CGFloat(40)
         let height = CGFloat(40)
 
@@ -322,10 +319,10 @@ extension SimpleHUD {
 
         let path = UIBezierPath(arcCenter: CGPoint(x: radius / 2, y: radius / 2),
                                 radius: radius / 2, startAngle: 0, endAngle: 2 * .pi, clockwise: false)
-        
+
         self.animation = .init(frame: CGRect(origin: .zero, size: CGSize(width: width, height: height)))
         self.animation?.center = view.center
-        
+
         for i in 0..<3 {
             let layer = CAShapeLayer()
             layer.frame = CGRect(x: (radius + spacing) * CGFloat(i), y: ypos, width: radius, height: radius)
@@ -337,12 +334,12 @@ extension SimpleHUD {
             layer.add(animation, forKey: "animation")
             self.animation?.layer.addSublayer(layer)
         }
-        
+
         self.addSubview(self.animation!)
         view.addSubview(self)
     }
-    
-    private func showFiveBarsLoading(at view:UIView, tintColor:UIColor) {
+
+    private func showFiveBarsLoading(at view: UIView, tintColor: UIColor) {
         let width = CGFloat(40)
         let height = CGFloat(24)
 
@@ -364,7 +361,7 @@ extension SimpleHUD {
 
         self.animation = .init(frame: CGRect(origin: .zero, size: CGSize(width: width, height: height)))
         self.animation?.center = view.center
-        
+
         for i in 0..<5 {
             let layer = CAShapeLayer()
             layer.frame = CGRect(x: lineWidth * 2 * CGFloat(i), y: 0, width: lineWidth, height: height)
@@ -377,16 +374,15 @@ extension SimpleHUD {
             layer.add(animation, forKey: "animation")
             self.animation?.layer.addSublayer(layer)
         }
-        
+
         self.addSubview(self.animation!)
         view.addSubview(self)
     }
-    
-    
-    func showProgreessLoading(at view:UIView, tintColor:UIColor, value: CGFloat) {
+
+    func showProgreessLoading(at view: UIView, tintColor: UIColor, value: CGFloat) {
         let width = CGFloat(50)
         let height = CGFloat(50)
-        
+
         let center = CGPoint(x: width / 2, y: height / 2)
         let radiusCircle = width / 2
         let radiusProgress = width / 2 - 3
@@ -396,7 +392,7 @@ extension SimpleHUD {
 
         self.animation = .init(frame: CGRect(origin: .zero, size: CGSize(width: width, height: height)))
         self.animation?.center = view.center
-        
+
         let layerCircle = CAShapeLayer()
         let layerProgress = CAShapeLayer()
         layerCircle.path = pathCircle.cgPath
@@ -409,7 +405,7 @@ extension SimpleHUD {
         layerProgress.lineWidth = 5
         layerProgress.strokeColor = tintColor.cgColor
         layerProgress.strokeEnd = 0
-        
+
         self.animation?.layer.addSublayer(layerCircle)
         self.animation?.layer.addSublayer(layerProgress)
 
@@ -418,11 +414,11 @@ extension SimpleHUD {
         self.progressLabel?.textColor = tintColor
         self.progressLabel?.textAlignment = .center
         self.progressLabel?.font = .systemFont(ofSize: 12)
-        
+
         self.addSubview(self.animation!)
         self.addSubview(self.progressLabel!)
         view.addSubview(self)
-        
+
         let animation = CABasicAnimation(keyPath: "strokeEnd")
         animation.duration = 0.2
         animation.fromValue = self.progressValue > value ? 0 : self.progressValue
@@ -432,14 +428,14 @@ extension SimpleHUD {
         layerProgress.add(animation, forKey: "animation")
         self.progressValue = value
     }
-    
-    func showIcon(at view:UIView, image:UIImage?, tintColor:UIColor) {
+
+    func showIcon(at view: UIView, image: UIImage?, tintColor: UIColor) {
         self.iconImageView = .init(frame: CGRect(origin: .zero, size: CGSize(width: 40, height: 40)))
         self.iconImageView?.image = image
         self.iconImageView?.tintColor = tintColor
         self.iconImageView?.contentMode = .scaleAspectFit
         self.iconImageView?.center = view.center
-        
+
         self.addSubview(self.iconImageView!)
         view.addSubview(self)
     }
