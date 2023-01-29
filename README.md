@@ -1,15 +1,14 @@
 # SimpleHUD
 SimpleHUD
 <br>
-<img src="https://github.com/knottx/SimpleHUD/blob/main/ReadmeResource/activityIndicator.gif" width="150"> 
-<img src="https://github.com/knottx/SimpleHUD/blob/main/ReadmeResource/circleStroke.gif" width="150"> 
-<img src="https://github.com/knottx/SimpleHUD/blob/main/ReadmeResource/circleRotateChase.gif" width="150"> 
-<img src="https://github.com/knottx/SimpleHUD/blob/main/ReadmeResource/circleSpinFade.gif" width="150"> 
-<img src="https://github.com/knottx/SimpleHUD/blob/main/ReadmeResource/threeDots.gif" width="150"> 
-<img src="https://github.com/knottx/SimpleHUD/blob/main/ReadmeResource/fiveBars.gif" width="150"> 
-<img src="https://github.com/knottx/SimpleHUD/blob/main/ReadmeResource/progress.gif" width="150"> 
-<img src="https://github.com/knottx/SimpleHUD/blob/main/ReadmeResource/icon.gif" width="150"> 
-
+<img src="ReadmeResource/activityIndicator.gif" width="150"> 
+<img src="ReadmeResource/circleStroke.gif" width="150"> 
+<img src="ReadmeResource/circleRotateChase.gif" width="150"> 
+<img src="ReadmeResource/circleSpinFade.gif" width="150"> 
+<img src="ReadmeResource/threeDots.gif" width="150"> 
+<img src="ReadmeResource/fiveBars.gif" width="150"> 
+<img src="ReadmeResource/progress.gif" width="150"> 
+<img src="ReadmeResource/icon.gif" width="150"> 
 <br>
 
 ## 📲 Installation
