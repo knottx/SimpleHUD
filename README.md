@@ -46,7 +46,7 @@ self.simpleHUD.dismiss()
 
 Dissmiss all stacked HUD
 ```swift
-self.simpleHUD.dissmissAll()
+self.simpleHUD.dismissAll()
 ```
 
 ### Change Simple HUD Type and Color 
